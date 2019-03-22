@@ -21,9 +21,16 @@ class LinkedList
     
     public void insertFirst(int new_data){
         Node newNode= new Node(new_data);//creatint one new node
+        System.out.println("before inserting");
+        System.out.println("Newnode.next"+newNode.next);
+        System.out.println("Head"+head);
+        System.out.println("after inserting "+new_data);
+      
         newNode.next=head; //initialise the head node to next of the new node
         head=newNode; //change the newnode to head
-        
+        System.out.println("Newnode.next"+newNode.next);
+        System.out.println("Head"+head);
+    }
     
    public void insertAfter(Node prev_node,int new_data){
         if(prev_node==null)//check if the node is null or not
@@ -32,19 +39,21 @@ class LinkedList
         }
         
         Node new_node=new Node(new_data);//create the new node
+        
         new_node.next=prev_node.next;
         prev_node.next=new_node;
     }
     
     public void insertEnd(int new_data){
-        Node new_node=new Node(new_data);//create the new node
+        Node new_node=new Node(new_data);
         if(head==null)
         {
-            head=new_node;
+            head=new Node(new_data);
+            return;
         }
-        new_node.next=null; // the last next of the last node must be a null
-        Node last=head;     //to find the last node
-        while(last!=null)
+        new_node.next=null;
+        Node last=head;
+        while(last.next!=null)
             last=last.next;
         
         last.next=new_node;    
@@ -52,21 +61,21 @@ class LinkedList
     
     public void InsertAtNth(Node head,int data,int position){
         int count=0;
-        Node node=head;//iniialise the first node
-        Node prev=null;//set previous to null
+        Node node=head;
+        Node prev=null;
         while(count!=position){
             count++;
-            prev=node;//skip the place one by one
-            node=node.next;//goes to the next node
+            prev=node;
+            node=node.next;
         }
         Node new_node=new Node(data);
         new_node.next=node;
-        if(count==0)// if count is zero then insert at the first
+        if(count==0)
         {
             head=new_node;
         }
         else{
-            prev.next=new_node; //otherwise insert the node at the position next tho the  which prev points
+            prev.next=new_node;
         }
     }
     
@@ -87,7 +96,7 @@ class LinkedList
 	     list.insertFirst(5);
 	     list.insertFirst(10);
 	     list.insertAfter(list.head.next,8);
-	     list.InsertAtNth(list.head,0,3);
+	     list.InsertAtNth(list.head,0,4);
 	     list.insertEnd(56);
 	     list.listNode();
 	
